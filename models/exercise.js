@@ -12,6 +12,12 @@ const ExerciseSchema = new mongoose.Schema(
     },
     date: {
       type: Date,
+      requried: true,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
   },
   {
