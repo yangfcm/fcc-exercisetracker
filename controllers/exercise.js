@@ -13,8 +13,8 @@ export const addExercise = async (req, res) => {
     const exercise = new Exercise({
       description,
       duration,
-      date: new Date(date),
-      userId,
+      date: date ? new Date(date) : new Date(),
+      user: userId,
     });
     await exercise.save();
     res.json({
@@ -31,6 +31,14 @@ export const addExercise = async (req, res) => {
   }
 };
 
-export const getUserExerciseLog = (req, res) => {
-  res.json("get user exercise log.");
+export const getUserExerciseLog = async (req, res) => {
+  const { id: userId } = req.params;
+  const { from, to, limit } = req.query;
+
+  // const exercises = await Exercise.find({
+  //   userId,
+  // })
+  //   .populate("userId", "_id username")
+  //   .exec();
+  res.json();
 };

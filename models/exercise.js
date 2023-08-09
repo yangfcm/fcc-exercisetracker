@@ -14,7 +14,7 @@ const ExerciseSchema = new mongoose.Schema(
       type: Date,
       requried: true,
     },
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
