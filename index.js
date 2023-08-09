@@ -5,6 +5,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import apiRouter from "./routers/index.js";
 
 dotenv.config();
 
@@ -20,7 +22,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static("public"));
+app.use("/api", apiRouter);
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
