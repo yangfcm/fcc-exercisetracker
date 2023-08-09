@@ -35,10 +35,17 @@ export const getUserExerciseLog = async (req, res) => {
   const { id: userId } = req.params;
   const { from, to, limit } = req.query;
 
-  // const exercises = await Exercise.find({
-  //   userId,
-  // })
-  //   .populate("userId", "_id username")
-  //   .exec();
-  res.json();
+  try {
+    const user = await User.findById(userId).populate("log");
+    if (!user) {
+      return res.status(400).json({
+        error: "User is unavailable.",
+      });
+    }
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 };
