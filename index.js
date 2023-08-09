@@ -1,3 +1,6 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -12,6 +15,8 @@ mongoose
   .then(() => {
     console.log("Database is connected.");
   });
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors());
